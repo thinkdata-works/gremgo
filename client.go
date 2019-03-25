@@ -105,7 +105,7 @@ func (c *Client) authenticate(requestId string) (err error){
 
 // Execute formats a raw Gremlin query, sends it to Gremlin Server, and returns the result.
 func (c *Client) Execute(query string, bindings, rebindings map[string]string) (resp interface{}, err error) {
-	if c.conn.isDisposed(){
+	if c.conn.IsDisposed(){
 		return nil, errors.New("you cannot write on disposed connection")
 	}
 	resp, err = c.executeRequest(query, bindings, rebindings)
@@ -114,7 +114,7 @@ func (c *Client) Execute(query string, bindings, rebindings map[string]string) (
 
 // ExecuteFile takes a file path to a Gremlin script, sends it to Gremlin Server, and returns the result.
 func (c *Client) ExecuteFile(path string, bindings, rebindings map[string]string) (resp interface{}, err error) {
-	if c.conn.isDisposed(){
+	if c.conn.IsDisposed(){
 		return nil, errors.New("you cannot write on disposed connection")
 	}
 	d, err := ioutil.ReadFile(path) // Read script from file
